@@ -1,43 +1,30 @@
+```html
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hispanic Heritage Census</title>
-<style>
-body{background-image:radial-gradient(circle at 10% 10%,rgba(255,255,255,.35) 0 2px,transparent 3px),radial-gradient(circle at 90% 80%,rgba(36,31,27,.10) 0 3px,transparent 4px);background-size:34px 34px,46px 46px}
-.wrap{position:relative}
-.title{font-family:Georgia,serif;text-shadow:2px 2px 0 rgba(255,255,255,.35);letter-spacing:-1px}
-.title:after{content:" 🌶️";font-family:Arial}
-.sub{font-weight:700}
-.card{box-shadow:6px 7px 0 rgba(36,31,27,.16);transform:rotate(-.4deg)}
-.card:nth-of-type(3){transform:rotate(.5deg)}
-.card:nth-of-type(4){transform:rotate(-.7deg)}
-.option{color:#241f1b;border:2px dashed rgba(36,31,27,.25);font-weight:700}
-.option input{accent-color:#241f1b}
 
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#c4b6a6;color:#241f1b}
-.wrap{max-width:520px;margin:auto;padding:18px}.title{text-align:center;font-size:30px;font-weight:900;margin:8px 0 4px}
-.sub{text-align:center;color:#5d554e;margin-bottom:20px}
-.card{border-radius:22px;padding:20px;margin:16px 0;background:#efe7dc}
-.blue{border:3px solid #2388ff}.red{border:3px solid #ff3b3b}.green{border:3px solid #28c76f}
-h2{margin:0 0 15px;font-size:21px}.option{display:block;padding:14px;margin:10px 0;border-radius:13px;background:#d8ccbe;cursor:pointer;font-size:17px}
-.option:hover{background:#c9bbaa}.vote{width:100%;border:0;border-radius:14px;padding:15px;font-size:18px;font-weight:800;background:#241f1b;color:#fff;cursor:pointer}
-.result{margin-top:10px}.bar{height:11px;background:#a79a8c;border-radius:10px;overflow:hidden}.fill{height:100%;background:#fff;width:0}
-.note{font-size:13px;color:#665d55;text-align:center;margin-top:18px}
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#c4b6a6;color:#241f1b;background-image:radial-gradient(circle at 10% 10%,rgba(255,255,255,.35) 0 2px,transparent 3px),radial-gradient(circle at 90% 80%,rgba(36,31,27,.10) 0 3px,transparent 4px);background-size:34px 34px,46px 46px}.wrap{position:relative;max-width:520px;margin:auto;padding:18px}.title{font-family:Georgia,serif;text-align:center;text-shadow:2px 2px 0 rgba(255,255,255,.35);letter-spacing:-1px;font-size:30px;font-weight:900;margin:8px 0 4px}.title:after{content:" 🌶️";font-family:Arial}.sub{font-weight:700;text-align:center;color:#5d554e;margin-bottom:20px}.card{box-shadow:6px 7px 0 rgba(36,31,27,.16);transform:rotate(-.4deg);border-radius:22px;padding:20px;margin:16px 0;background:#efe7dc}.card:nth-of-type(3){transform:rotate(.5deg)}.card:nth-of-type(4){transform:rotate(-.7deg)}.blue{border:3px solid #2388ff}.red{border:3px solid #ff3b3b}.green{border:3px solid #28c76f}h2{margin:0 0 15px;font-size:21px}.option{display:block;padding:14px;margin:10px 0;border-radius:13px;background:#d8ccbe;cursor:pointer;font-size:17px;color:#241f1b;border:2px dashed rgba(36,31,27,.25);font-weight:700}.option:hover{background:#c9bbaa}.option input{accent-color:#241f1b}.vote{width:100%;border:0;border-radius:14px;padding:15px;font-size:18px;font-weight:800;background:#241f1b;color:#fff;cursor:pointer}.result{margin-top:10px}.bar{height:11px;background:#a79a8c;border-radius:10px;overflow:hidden}.fill{height:100%;background:#fff;width:0;transition:width .4s}.note{font-size:13px;color:#665d55;text-align:center;margin-top:18px}
 </style>
 </head>
-<body><div class="wrap">
+
+<body>
+
+<div class="wrap">
+
 <div class="title">🌮 Hispanic Heritage Census™</div>
 <div class="sub">The extremely serious Hispanic investigation 💀<br>🌮 No somos una organización oficial. La abuelita tampoco aprobó esto. 👵</div>
 
 <div class="card blue">
 <h2>🔵 1. ¿Cómo me llamarías hoy?</h2>
-<label class="option"><input type="radio" name="q1"> Papi</label>
-<label class="option"><input type="radio" name="q1"> Mi amor</label>
-<label class="option"><input type="radio" name="q1"> Mi cielo</label>
-<label class="option"><input type="radio" name="q1"> Taquito</label>
-<label class="option"><input type="radio" name="q1"> Mami</label>
+<label class="option"><input type="radio" name="q1" value="papi"> Papi</label>
+<label class="option"><input type="radio" name="q1" value="miamor"> Mi amor</label>
+<label class="option"><input type="radio" name="q1" value="micielo"> Mi cielo</label>
+<label class="option"><input type="radio" name="q1" value="taquito"> Taquito</label>
+<label class="option"><input type="radio" name="q1" value="mami"> Mami</label>
 </div>
 
 <div class="card red">
@@ -56,19 +43,144 @@ h2{margin:0 0 15px;font-size:21px}.option{display:block;padding:14px;margin:10px
 <label class="option"><input type="radio" name="q3"> 🫓 Mega Pupusa</label>
 </div>
 
-<button class="vote" onclick="alert('¡Voto registrado en esta DEMO! Para votos reales entre teléfonos necesitamos publicar la encuesta en internet.')">VOTAR 🔥</button>
+<button class="vote" id="voteButton">VOTAR 🔥</button>
 
 <div class="card">
 <h2>📊 Resultados</h2>
-<p>Papi — 0 votos</p><div class="bar"><div class="fill"></div></div>
-<p>Mi amor — 0 votos</p><div class="bar"><div class="fill"></div></div>
-<p>Mi cielo — 0 votos</p><div class="bar"><div class="fill"></div></div>
-<p>Taquito — 0 votos</p><div class="bar"><div class="fill"></div></div>
-<p>Mami — 0 votos</p><div class="bar"><div class="fill"></div></div>
+
+<p>Papi — <span id="r-papi">0</span> votos</p>
+<div class="bar"><div class="fill" id="b-papi"></div></div>
+
+<p>Mi amor — <span id="r-miamor">0</span> votos</p>
+<div class="bar"><div class="fill" id="b-miamor"></div></div>
+
+<p>Mi cielo — <span id="r-micielo">0</span> votos</p>
+<div class="bar"><div class="fill" id="b-micielo"></div></div>
+
+<p>Taquito — <span id="r-taquito">0</span> votos</p>
+<div class="bar"><div class="fill" id="b-taquito"></div></div>
+
+<p>Mami — <span id="r-mami">0</span> votos</p>
+<div class="bar"><div class="fill" id="b-mami"></div></div>
 </div>
+
 <div class="note">
-      <strong>Creada por un estudiante para un chiste; no es una encuesta real.</strong><br>
-      — Sebastian Pereira<br>
-      <em>- El Catire</em>
-    </div>
-</div></body></html>
+<strong>Creada por un estudiante para un chiste; no es una encuesta real.</strong><br>
+— Sebastian Pereira<br>
+<em>- El Catire</em>
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://giedywcetrrzwdwuuama.supabase.co";
+const SUPABASE_KEY = "sb_publishable_wedHy9CQuTjv_jEnSMiqcg_nVZ37Um0";
+
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+const names = {
+  papi: "r-papi",
+  miamor: "r-miamor",
+  micielo: "r-micielo",
+  taquito: "r-taquito",
+  mami: "r-mami"
+};
+
+const bars = {
+  papi: "b-papi",
+  miamor: "b-miamor",
+  micielo: "b-micielo",
+  taquito: "b-taquito",
+  mami: "b-mami"
+};
+
+async function loadResults() {
+  const { data, error } = await supabaseClient
+    .from("votes")
+    .select("answer");
+
+  if (error) {
+    console.error("Error cargando votos:", error);
+    return;
+  }
+
+  const counts = {
+    papi: 0,
+    miamor: 0,
+    micielo: 0,
+    taquito: 0,
+    mami: 0
+  };
+
+  data.forEach(vote => {
+    if (counts[vote.answer] !== undefined) {
+      counts[vote.answer]++;
+    }
+  });
+
+  const total = data.length;
+
+  Object.keys(counts).forEach(answer => {
+    const number = counts[answer];
+
+    document.getElementById(names[answer]).textContent = number;
+
+    const percentage = total > 0
+      ? (number / total) * 100
+      : 0;
+
+    document.getElementById(bars[answer]).style.width =
+      percentage + "%";
+  });
+}
+
+document.getElementById("voteButton").addEventListener("click", async () => {
+
+  const selected = document.querySelector(
+    'input[name="q1"]:checked'
+  );
+
+  if (!selected) {
+    alert("Selecciona una opción primero 😭");
+    return;
+  }
+
+  const button = document.getElementById("voteButton");
+
+  button.disabled = true;
+  button.textContent = "GUARDANDO... 🔥";
+
+  const { error } = await supabaseClient
+    .from("votes")
+    .insert({
+      answer: selected.value
+    });
+
+  if (error) {
+    console.error("Error guardando voto:", error);
+    alert("Algo salió mal al guardar el voto 😭");
+    button.disabled = false;
+    button.textContent = "VOTAR 🔥";
+    return;
+  }
+
+  alert("¡Voto registrado! 🔥");
+
+  await loadResults();
+
+  button.textContent = "VOTO REGISTRADO ✓";
+});
+
+loadResults();
+
+setInterval(loadResults, 5000);
+</script>
+
+</body>
+</html>
+```
