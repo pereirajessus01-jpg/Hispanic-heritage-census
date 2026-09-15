@@ -29,18 +29,18 @@
 
 <div class="card red">
 <h2>🔴 2. ¿Qué nivel de "Hispanic Heritage" tienes?</h2>
-<label class="option"><input type="radio" name="q2"> 🌮 1 taco — Turista</label>
-<label class="option"><input type="radio" name="q2"> 🌮🌮 2 tacos — Sospechosamente latino</label>
-<label class="option"><input type="radio" name="q2"> 🌮🌮🌮 3 tacos — Certificado por la abuelita</label>
-<label class="option"><input type="radio" name="q2"> 🌮🌮🌮🌮🌮 5 tacos — EL TAQUERO SUPREMO</label>
+<label class="option"><input type="radio" name="q2" value="1"> 🌮 1 taco — Turista</label>
+<label class="option"><input type="radio" name="q2" value="2"> 🌮🌮 2 tacos — Sospechosamente latino</label>
+<label class="option"><input type="radio" name="q2" value="3"> 🌮🌮🌮 3 tacos — Certificado por la abuelita</label>
+<label class="option"><input type="radio" name="q2" value="5"> 🌮🌮🌮🌮🌮 5 tacos — EL TAQUERO SUPREMO</label>
 </div>
 
 <div class="card green">
 <h2>🟢 3. ¿Cómo te sientes hoy?</h2>
-<label class="option"><input type="radio" name="q3"> 🇩🇴 Dominican Papi</label>
-<label class="option"><input type="radio" name="q3"> 🇨🇺 Cuban Mario</label>
-<label class="option"><input type="radio" name="q3"> 🌮 Súper Taquero Supremo</label>
-<label class="option"><input type="radio" name="q3"> 🫓 Mega Pupusa</label>
+<label class="option"><input type="radio" name="q3" value="dominican"> 🇩🇴 Dominican Papi</label>
+<label class="option"><input type="radio" name="q3" value="cuban"> 🇨🇺 Cuban Mario</label>
+<label class="option"><input type="radio" name="q3" value="taquero"> 🌮 Súper Taquero Supremo</label>
+<label class="option"><input type="radio" name="q3" value="pupusa"> 🫓 Mega Pupusa</label>
 </div>
 
 <button class="vote" id="voteButton">VOTAR 🔥</button>
@@ -75,110 +75,110 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-const SUPABASE_URL = "https://giedywcetrrzwdwuuama.supabase.co";
-const SUPABASE_KEY = "sb_publishable_wedHy9CQuTjv_jEnSMiqcg_nVZ37Um0";
+const SUPABASE_URL="https://giedywcetrrzwdwuuama.supabase.co";
+const SUPABASE_KEY="sb_publishable_wedHy9CQuTjv_jEnSMiqcg_nVZ37Um0";
 
-const supabaseClient = supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
+const supabaseClient=supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
 );
 
-const names = {
-  papi: "r-papi",
-  miamor: "r-miamor",
-  micielo: "r-micielo",
-  taquito: "r-taquito",
-  mami: "r-mami"
+const names={
+papi:"r-papi",
+miamor:"r-miamor",
+micielo:"r-micielo",
+taquito:"r-taquito",
+mami:"r-mami"
 };
 
-const bars = {
-  papi: "b-papi",
-  miamor: "b-miamor",
-  micielo: "b-micielo",
-  taquito: "b-taquito",
-  mami: "b-mami"
+const bars={
+papi:"b-papi",
+miamor:"b-miamor",
+micielo:"b-micielo",
+taquito:"b-taquito",
+mami:"b-mami"
 };
 
-async function loadResults() {
-  const { data, error } = await supabaseClient
-    .from("votes")
-    .select("answer");
+async function loadResults(){
+const{data,error}=await supabaseClient
+.from("votes")
+.select("q1");
 
-  if (error) {
-    console.error("Error cargando votos:", error);
-    return;
-  }
-
-  const counts = {
-    papi: 0,
-    miamor: 0,
-    micielo: 0,
-    taquito: 0,
-    mami: 0
-  };
-
-  data.forEach(vote => {
-    if (counts[vote.answer] !== undefined) {
-      counts[vote.answer]++;
-    }
-  });
-
-  const total = data.length;
-
-  Object.keys(counts).forEach(answer => {
-    const number = counts[answer];
-
-    document.getElementById(names[answer]).textContent = number;
-
-    const percentage = total > 0
-      ? (number / total) * 100
-      : 0;
-
-    document.getElementById(bars[answer]).style.width =
-      percentage + "%";
-  });
+if(error){
+console.error("Error cargando votos:",error);
+return;
 }
 
-document.getElementById("voteButton").addEventListener("click", async () => {
+const counts={
+papi:0,
+miamor:0,
+micielo:0,
+taquito:0,
+mami:0
+};
 
-  const selected = document.querySelector(
-    'input[name="q1"]:checked'
-  );
+data.forEach(vote=>{
+if(counts[vote.q1]!==undefined){
+counts[vote.q1]++;
+}
+});
 
-  if (!selected) {
-    alert("Selecciona una opción primero 😭");
-    return;
-  }
+const total=data.length;
 
-  const button = document.getElementById("voteButton");
+Object.keys(counts).forEach(answer=>{
+const number=counts[answer];
 
-  button.disabled = true;
-  button.textContent = "GUARDANDO... 🔥";
+document.getElementById(names[answer]).textContent=number;
 
-  const { error } = await supabaseClient
-    .from("votes")
-    .insert({
-      answer: selected.value
-    });
+const percentage=total>0?(number/total)*100:0;
 
-  if (error) {
-    console.error("Error guardando voto:", error);
-    alert("Algo salió mal al guardar el voto 😭");
-    button.disabled = false;
-    button.textContent = "VOTAR 🔥";
-    return;
-  }
+document.getElementById(bars[answer]).style.width=
+percentage+"%";
+});
+}
 
-  alert("¡Voto registrado! 🔥");
+document.getElementById("voteButton").addEventListener("click",async()=>{
 
-  await loadResults();
+const q1=document.querySelector('input[name="q1"]:checked');
+const q2=document.querySelector('input[name="q2"]:checked');
+const q3=document.querySelector('input[name="q3"]:checked');
 
-  button.textContent = "VOTO REGISTRADO ✓";
+if(!q1||!q2||!q3){
+alert("Responde las 3 preguntas primero 😭");
+return;
+}
+
+const button=document.getElementById("voteButton");
+
+button.disabled=true;
+button.textContent="GUARDANDO... 🔥";
+
+const{error}=await supabaseClient
+.from("votes")
+.insert({
+q1:q1.value,
+q2:q2.value,
+q3:q3.value
+});
+
+if(error){
+console.error("Error guardando voto:",error);
+alert("Algo salió mal al guardar el voto 😭");
+button.disabled=false;
+button.textContent="VOTAR 🔥";
+return;
+}
+
+alert("¡Voto registrado! 🔥");
+
+await loadResults();
+
+button.textContent="VOTO REGISTRADO ✓";
 });
 
 loadResults();
 
-setInterval(loadResults, 5000);
+setInterval(loadResults,5000);
 </script>
 
 </body>
